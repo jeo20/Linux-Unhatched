@@ -1,0 +1,123 @@
+La mayoría de los comandos siguen un patrón de sintaxis simple:
+
+comando [opciones…] [argumentos…]
+
+
+Imprimir el directorio de trabajo
+Para descubrir dónde se encuentra actualmente dentro del sistema de archivos, puede utilizar el comando pwd. El comando pwd imprime el directorio de trabajo (print working directory), su ubicación actual dentro del sistema de archivos.
+
+Cambio de Directorios
+Utilice el comando cd (change directory) para cambiar de directorio y navegar por la estructura del sistema de archivos.
+
+Listados de archivos
+El comando ls se utiliza para enumerar el contenido de un directorio. Ha visto cómo se utiliza en varios ejemplos anteriores. Esta página le ayudará a sentirse más cómodo con su uso.
+
+Acceso administrativo
+Hay muchos comandos de Linux que tratan con información confidencial como contraseñas, hardware del sistema, u otros que operan bajo circunstancias excepcionales. Evitar que usuarios ordinarios ejecuten estos comandos ayuda a proteger el sistema. Iniciar una sesión como usuario root proporciona acceso administrativo, y permite la ejecución de algunos de los comandos privilegiados.
+
+El comando sudo
+sudo [OPCIONES] COMANDO
+El comando sudo permite a un usuario ejecutar un comando como otro usuario sin tener que crear un nuevo shell. Para ejecutar un comando con privilegios administrativos utilice el comando como argumento para el comando sudo. Al igual que pasa con el comando su, el comando sudo asume por defecto que la cuenta de usuario root debe usarse para ejecutar comandos.
+
+Permisos
+Los permisos determinan la forma en que los diferentes usuarios pueden interactuar con un archivo o directorio. Al enumerar un archivo con el comando ls -l, el resultado incluye información sobre sus permisos.
+
+Cambiar los permisos de los archivos
+El comando chmod se utiliza para cambiar los permisos de un archivo o directorio. Sólo el usuario raíz o el usuario propietario del archivo puede cambiar los permisos de un archivo.
+
+
+Cambiar el propietario de un archivo
+Inicialmente, el propietario de un archivo es el usuario que lo crea. El comando chown se utiliza para cambiar el propietario de los archivos y directorios. Cambiar el usuario propietario requiere acceso administrativo. Un usuario ordinario no puede utilizar este comando para cambiar el usuario propietario de un archivo, ni tan solo para otorgar propiedad de uno de sus propios archivos a otro usuario. Sin embargo, el comando chown permite cambiar el grupo propietario, lo cual puede ser realizado por el usuario root o el propietario del archivo.
+
+Visualización de archivos
+Existen varios comandos en Linux disponibles para visualizar el contenido de los archivos. El comando cat, que significa “concatenar”, a menudo se usa para ver rápidamente el contenido de archivos pequeños.
+
+Copiar archivos
+El comando cp se utiliza para copiar archivos. Similar al comando mv, requiere al menos dos argumentos: un origen y un destino.
+
+Copiar archivos a nivel de bits
+El comando dd se utiliza para copiar archivos o particiones enteras al nivel de bits.
+
+Mover archivos
+El comando mv se utiliza para mover un archivo de una ubicación en el sistema de archivos a otra.
+
+Eliminar archivos
+El comando rm (remove) se utiliza para eliminar archivos y directorios. Es importante tener en cuenta que los archivos y directorios eliminados no aparecen en una “papelera” como ocurre con los sistemas operativos orientados a escritorio. Cuando un archivo se elimina con el comando rm, generalmente siempre desaparece de manera permanente.
+
+Filtrado de entradas
+El comando grep es un filtro de texto que busca líneas en una entrada y devolverá aquellas que coincidan con un patrón determinado.
+grep [OPCIONES] PATRÓN [ARCHIVO]
+
+Expresiones regulares
+Las expresiones regulares tienen dos formas comunes: la forma básica y la forma extendida. La mayoría de los comandos que utilizan expresiones regulares pueden interpretar expresiones regulares básicas. Sin embargo, las expresiones regulares extendidas no están disponibles para todos los comandos y normalmente requieren una opción de comando para funcionar correctamente.
+    
+    Patrones básicos
+        Caracteres de anclaje
+            Los caracteres de anclaje son una de las formas con que se pueden utilizar expresiones regulares para limitar los resultados de una búsqueda
+            El primer carácter de anclaje ^ se utiliza para indicar que el patrón debe aparecer al principio de la línea. Por ejemplo, para encontrar todas las líneas en /etc/passwd que comienzan con root use el patrón ^root. Tenga en cuenta que ^ debe ser el primer carácter del patrón para ser efectivo.
+            El segundo carácter de anclaje $ se puede utilizar para indicar que el patrón debe aparecer al final de la línea, reduciendo eficazmente los resultados de la búsqueda. Para encontrar las líneas que terminan con una r en el archivo alpha-first.txt
+        Encontrar caracteres coincidentes usando .
+            Una de las expresiones más útiles es el carácter . (punto). Representa cualquier carácter excepto el carácter de nueva línea. El patrón r..f encontrará cualquier línea que contenga la letra r seguida de exactamente dos caracteres (que pueden ser cualquier carácter excepto el de nueva línea) y luego la letra f:
+        Encontrar un carácter único usando []
+            Los corchetes [ ] se utilizan para indicar caracteres únicos o rangos de caracteres posibles en una lista.
+        Indicar un carácter o patrón repetido utilizando el *
+            El carácter de expresión regular * se utiliza para indicar la ausencia o la presencia una o más veces del carácter o patrón que lo precede. Por ejemplo, e* indicaría la ausencia (cero) o la presencia, una o más veces, de la letra e:
+Apagar
+El comando shutdown prepara el sistema para un apagado seguro. Todos los usuarios que han iniciado una sesión reciben la notificación de que el sistema se está apagando y se evitan nuevos inicios de sesión en los cinco minutos previos al apagado completo del sistema.
+
+Configuración de redes
+El comando ifconfig significa “configuración de interfaz” (interface configuration) y se utiliza para mostrar información sobre la configuración de red.
+    El comando ifconfig también se puede utilizar para modificar temporalmente la configuración de red. Normalmente, estos cambios deben ser permanentes, por lo que raramente se usa el comando ifconfig para realizar dichos cambios.
+
+    El comando ping se utiliza para verificar la conectividad entre dos equipos. Para hacer esto, envía paquetes a otra máquina a través de la red. Que el remitente reciba una respuesta indica que es posible conectarse a esa máquina.
+
+
+Visualización de procesos
+Ejecutar un comando da como resultado algo llamado proceso. En el sistema operativo Linux, los procesos se ejecutan en función de los privilegios del usuario que ejecuta el comando. Esto permite que los procesos se limiten a ciertas funciones dependiendo de la identidad del usuario.
+
+Aunque hay excepciones, generalmente el sistema operativo diferenciará entre los usuarios en función de si son o no el administrador. Normalmente, los usuarios habituales, como el usuario sysadmin, no pueden controlar los procesos de otro usuario. Los usuarios que tienen privilegios administrativos, como la cuenta root, pueden controlar cualquier proceso de cualquier usuario, incluyendo la detención de cualquier proceso.
+
+El comando ps se puede utilizar para enumerar los procesos.
+
+    Por defecto, el comando ps mostrará los procesos que se están ejecutando en la terminal actual. En el ejemplo anterior, la última línea corresponde al proceso generado al ejecutar el comando ps. La salida incluye las siguientes columnas de información:
+
+    PID: El identificador para el proceso (process identifier), el cual es único para cada proceso. Esta información es útil cuando necesitamos controlar los procesos según su número identificador (ID).
+
+    TTY: El nombre de la terminal en la que está funcionando el proceso. Esta información es útil para distinguir entre diferentes procesos que tienen el mismo nombre.
+
+    TIME: La cantidad total de tiempo de procesado que utiliza un proceso determinado. Normalmente, los usuarios normales no utilizan esta información.
+
+    CMD: El comando que inició el proceso.
+
+Administración de paquetes
+La administración de paquetes es un sistema mediante el cual un software puede ser instalado, actualizado, consultado o eliminado de un sistema de archivos. En Linux, hay muchos sistemas de gestión de paquetes de software diferentes, pero los dos más populares son Debian y Red Hat. Las máquinas virtuales de este curso utilizan Ubuntu, un derivado de Debian.
+
+En el nivel más bajo del sistema de administración de paquetes Debian se encuentra el comando dpkg. Este comando puede ser complicado para los usuarios más nuevos a Linux. La herramienta Advanced Package Tool, apt-get, un programa front-end para la herramienta dpkg, facilita la gestión de paquetes.
+    
+    Instalación de paquetes
+    Los paquetes de archivos normalmente se instalan por descarga directa desde repositorios ubicados en servidores de Internet. Los repositorios Debian contienen más de 65.000 paquetes de software diferentes. Antes de instalar un paquete, es recomendable actualizar la lista de paquetes disponibles usando el comando apt-get update.
+
+    Actualización de paquetes
+    El comando apt-get install también puede actualizar un paquete, si ese paquete ya está instalado y existe una versión más reciente disponible. Si el paquete aún no está en el sistema, se instalará; si está en el sistema, se actualizará.
+
+    La actualización de todos los paquetes del sistema debe realizarse en dos pasos. Primero, actualice la caché de todos los paquetes disponibles utilizando apt-get update. En segundo lugar, ejecute el comando apt-get upgrade para actualizar todos los paquetes y sus dependencias.
+
+    Eliminación de paquetes
+    El comando apt-get puede eliminar o purgar un paquete. La diferencia entre los dos es que purgar suprime todos los archivos del paquete, mientras que eliminar suprime todos los archivos del paquete, excepto los archivos de configuración.
+
+    Un administrador puede ejecutar el comando apt-get remove para eliminar un paquete o el comando apt-get purge para purgar un paquete completamente del sistema.
+
+Actualización de contraseñas de usuario
+El comando passwd se utiliza para actualizar la contraseña de un usuario. Los usuarios solo pueden cambiar sus propias contraseñas, mientras que el usuario root puede actualizar la contraseña para cualquier usuario.
+
+Redirección
+Agregar contenido a archivos en Linux puede hacerse de varias maneras. Linux posee algunos editores de texto que pueden usarse para agregar contenido a un archivo. Sin embargo, este método requiere cierta familiaridad con los comandos del editor de texto de Linux.
+
+Editor de texto
+El principal editor de texto para Linux y UNIX es un programa llamado vi. Si bien hay numerosos editores disponibles para Linux incluyendo desde el pequeño editor nano hasta el editor masivo emacs, el editor vi tiene varias ventajas:
+
+El editor vi está disponible en todas las distribuciones Linux del mundo. Esto no ocurre con ningún otro editor.
+
+El editor vi se puede ejecutar tanto en una CLI (interfaz de línea de comandos) como en una GUI (interfaz gráfica de usuario).
+
+Aunque se han añadido nuevas características al editor vi, las funciones principales han existido durante décadas. Esto significa que si alguien aprendió a usar el editor vi en la década de 1970, podrá usar la versión moderna sin ningún problema. Aunque eso pueda parecer trivial, puede que dentro de veinte años no sea tan trivial.
